@@ -21,5 +21,21 @@ def encode_string(s):
     return ''.join(output)
 
 
+def encode_string2(s):
+    output = []
+    count = 1
+
+    for i in range(1, len(s)):
+        if s[i] != s[i - 1]:
+            output.extend([str(count), s[i - 1]])
+            count = 1
+        else:
+            count += 1
+    
+    output.extend([str(count), s[-1]])
+    return ''.join(output)
+
+
 s = 'AAAABBBCCDAA'
 print(encode_string(s))
+print(encode_string2(s))
