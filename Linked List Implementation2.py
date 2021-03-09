@@ -14,6 +14,10 @@ class LinkedList():
     def __len__(self):
         return self.length
 
+    def create_head(self, new_node):
+        self.head = new_node
+        self.tail = self.head
+
     def nodes(self):
         temp = self.head
         while temp:
@@ -24,19 +28,16 @@ class LinkedList():
     def append(self, value):
         new_node = self.Node(value)
         if self.head is None:
-            self.head = new_node
-            self.tail = self.head
-        else:
-            self.tail.next = new_node
-            self.tail = new_node
-            self.length += 1
+            self.create_head(new_node)
+        self.tail.next = new_node
+        self.tail = new_node
+        self.length += 1
         return self.length
     
     def prepend(self, value):
         new_node = self.Node(value)
         if self.head is None:
-            self.head = new_node
-            self.tail = self.head
+            self.create_head(new_node)
         new_node.next = self.head
         self.head = new_node
         self.length += 1
